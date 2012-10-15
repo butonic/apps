@@ -87,7 +87,24 @@ for($i = 0; $i<count($root_images); $i++) {
 	$tl->addTile(new \OC\Pictures\TileSingle($root_images[$i]));
 }
 
+
+// Make breadcrumb
+$breadcrumb = array();
+$pathtohere = '';
+foreach( explode( '/', $root ) as $i ) {
+	if( $i != '' ) {
+		$pathtohere .= '/'.str_replace('+','%20', urlencode($i)).'/';
+		$breadcrumb[] = array( 'dir' => $pathtohere, 'name' => $i );
+	}
+}
+
+$breadcrumbNav = new OCP\Template( 'files', 'part.breadcrumb', '' );
+$breadcrumbNav->assign( 'breadcrumb', $breadcrumb, false );
+$breadcrumbNav->assign( 'baseURL', OCP\Util::linkTo('gallery', 'index.php').'&root=', false);
+
+
 $tmpl = new OCP\Template( 'gallery', 'index', 'user' );
 $tmpl->assign('root', $root, false);
+$tmpl->assign( 'breadcrumb', $breadcrumbNav->fetchPage(), false );
 $tmpl->assign('tl', $tl, false);
 $tmpl->printPage();
