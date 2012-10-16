@@ -14,19 +14,31 @@
  * loaded
  */
 
- (function(exports) {
-    "use strict";
+var News = News || {};
 
-    var Cache = function(){
+(function(exports) {
+
+    var Cache = function(batchSize){
+        this.batchSize = batchSize;
         this.reset();
     };
 
 
-
     Cache.prototype.reset = function(){
         this.items = [];
+        this.feeds = [];
+    };
+
+    Cache.prototype.setItem = function(item) {
+        this.items[item.getId()] = item;
+        this.feeds[item.getFeedId()][item.getId()] = item;
+    };
+
+    Cache.prototype.removeItem = function(item) {
+        delete this.items[item.getId()];
+        delete this.feeds[item.getFeedId()][item.getId()];
     };
 
     exports.Cache = Cache;
 
- }(typeof exports === "undefined" ? (this.moduleName = {}): exports));
+})(News);
