@@ -1,3 +1,6 @@
-angular.module('News').factory ['Model', (Model) ->
-	class ItemModel extends Model
+angular.module('News').factory 'ItemModel', ['Model', (Model) ->
+
+    class ItemModel extends Model
+
+    return new ItemModel()
 ]

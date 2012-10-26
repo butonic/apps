@@ -44,6 +44,7 @@ class NewsController extends Controller {
         $this->addScript('news');
         $this->addScript('menu');
         $this->addScript('items');
+        $this->addScript('app');
 
         $this->addStyle('news');
         $this->addStyle('settings');

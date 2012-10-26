@@ -1,3 +1,8 @@
-angular.module('News').factory ['Model', (Model) ->
-	class FeedModel extends Model
+angular.module('News').factory 'FeedModel', ['Model', (Model) ->
+    class FeedModel extends Model
+
+        constructor: () ->
+
+
+    return new FeedModel()
 ]

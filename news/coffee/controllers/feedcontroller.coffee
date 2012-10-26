@@ -1,11 +1,11 @@
 angular.module('News').controller 'FeedController', 
-['Controller', '$scope', (Controller, $scope) ->
+['Controller', '$scope', 'FeedModel', (Controller, $scope, FeedModel) ->
 
-	class FeedController extends Controller
+    class FeedController extends Controller
 
-		constructor: (@$scope) ->
+        constructor: (@$scope, @feedModel) ->
+            @$scope.items = @feedModel.getItems()
 
 
-
-	return new FeedController($scope)
+    return new FeedController($scope, FeedModel)
 ]

@@ -17,20 +17,22 @@
   });
 
   angular.module('News').controller('FeedController', [
-    'Controller', '$scope', function(Controller, $scope) {
+    'Controller', '$scope', 'FeedModel', function(Controller, $scope, FeedModel) {
       var FeedController;
       FeedController = (function(_super) {
 
         __extends(FeedController, _super);
 
-        function FeedController($scope) {
+        function FeedController($scope, feedModel) {
           this.$scope = $scope;
+          this.feedModel = feedModel;
+          this.$scope.items = this.feedModel.getItems();
         }
 
         return FeedController;
 
       })(Controller);
-      return new FeedController($scope);
+      return new FeedController($scope, FeedModel);
     }
   ]);
 
@@ -52,10 +54,10 @@
     }
   ]);
 
-  angular.module('News').factory([
+  angular.module('News').factory('ItemModel', [
     'Model', function(Model) {
       var ItemModel;
-      return ItemModel = (function(_super) {
+      ItemModel = (function(_super) {
 
         __extends(ItemModel, _super);
 
@@ -66,6 +68,7 @@
         return ItemModel;
 
       })(Model);
+      return new ItemModel();
     }
   ]);
 
@@ -73,44 +76,80 @@
     var Model;
     return Model = (function() {
 
-      function Model() {}
+      function Model() {
+        this._items = [];
+        this._itemIds = {};
+      }
+
+      Model.prototype.add = function(item) {
+        this._items.push(item);
+        return this._itemIds[item.id] = item;
+      };
+
+      Model.prototype.update = function(item) {
+        return this._items = item;
+      };
+
+      Model.prototype.removeById = function(id) {
+        var counter, item, removeItemIndex, _i, _len, _ref;
+        removeItemIndex = null;
+        _ref = this.items;
+        for (counter = _i = 0, _len = _ref.length; _i < _len; counter = ++_i) {
+          item = _ref[counter];
+          if (item.id === id) {
+            removeItemIndex = counter;
+          }
+        }
+        if (removeItemIndex !== null) {
+          this.items.splice(removeItemId, 1);
+          return delete this._itemIds[id];
+        }
+      };
+
+      Model.prototype.getItemById = function(id) {
+        return this._itemIds[id];
+      };
+
+      Model.prototype.getItems = function() {
+        return this._items;
+      };
 
       return Model;
 
     })();
   });
 
-  angular.module('News').factory([
+  angular.module('News').factory('Updater', ['$rootScope', function($rootScope) {}]);
+
+  angular.module('News').factory('FeedModel', [
     'Model', function(Model) {
       var FeedModel;
-      return FeedModel = (function(_super) {
+      FeedModel = (function(_super) {
 
         __extends(FeedModel, _super);
 
-        function FeedModel() {
-          return FeedModel.__super__.constructor.apply(this, arguments);
-        }
+        function FeedModel() {}
 
         return FeedModel;
 
       })(Model);
+      return new FeedModel();
     }
   ]);
 
-  angular.module('News').factory([
+  angular.module('News').factory('FeedModel', [
     'Model', function(Model) {
       var FeedModel;
-      return FeedModel = (function(_super) {
+      FeedModel = (function(_super) {
 
         __extends(FeedModel, _super);
 
-        function FeedModel() {
-          return FeedModel.__super__.constructor.apply(this, arguments);
-        }
+        function FeedModel() {}
 
         return FeedModel;
 
       })(Model);
+      return new FeedModel();
     }
   ]);
 
