@@ -12,26 +12,6 @@ $(document).ready(function() {
 
 <div id="controls">
 	<?php echo($_['breadcrumb']); ?>
-	<!--
-	<?php for($i=0; $i<count($_["breadcrumb"]); $i++):
-		$crumb = $_["breadcrumb"][$i]; ?>
-		<div class="crumb <?php if($i == count($_["breadcrumb"])-1) echo 'last';?> svg" data-dir='<?php echo urlencode($crumb["dir"]);?>' style='background-image:url("<?php echo OCP\image_path('core','breadcrumb.png');?>")'>
-		<a href="<?php echo $_['baseURL'].urlencode($crumb["dir"]); ?>"><?php echo OCP\Util::sanitizeHTML($crumb["name"]); ?></a>
-		</div>
-	<?php endfor;?>
-			<?php
-	$sr = trim($_['root'], '/');
-	if (!empty($sr)) {
-		$paths = explode('/', $sr);
-		$path = '/';
-		for ($i = 0; $i < count($paths); $i++) {
-			$path .= urlencode($paths[$i]).'/';
-			$classess = 'crumb'.($i == count($paths)-1?' last':'');
-			echo '<div class="'.$classess.'" style="background-image:url(\''.\OCP\image_path('core','breadcrumb.png').'\')"><a href="'.\OCP\Util::linkTo('gallery', 'index.php').'&root='.$path.'">'.OCP\Util::sanitizeHTML($paths[$i]).'</a></div>';
-		}
-	}
-
-?>-->
 	<div id="slideshow">
 		<input type="button" class="start" value="<?php echo $l->t('Slideshow')?>" />
 	</div>
