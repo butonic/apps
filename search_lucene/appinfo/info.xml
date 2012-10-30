@@ -2,12 +2,11 @@
 <info>
 	<id>search_lucene</id>
 	<name>Lucene Search</name>
-	<version>0.2</version>
 	<licence>AGPL</licence>
 	<author>Jörn Dreyer</author>
-	<require>4</require>
+	<require>4.5</require>
 	<types>
 		<filesystem/>
 	</types>
-	<description>Search through your meta information and file contents with the power of lucene.</description>
+	<description>Search through your meta information and file contents with the power of lucene.<p>This is an <em>E X P E R I M E N T A L</em> feature and currently disables the default search implementation. For now, files are indexed only upon change and not with a scan.</p></description>
 </info>
