@@ -3,6 +3,7 @@
 "songs" => "Lieder",
 "albums" => "Alben",
 "Add album to playlist" => "Album zur Wiedergabeliste hinzufügen",
+"Add to playlist" => "Zur Wiedergabeliste hinzufügen",
 "Play" => "Abspielen",
 "Pause" => "Pause",
 "Previous" => "Vorheriges",
