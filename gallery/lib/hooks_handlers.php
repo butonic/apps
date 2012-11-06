@@ -43,7 +43,7 @@ class OC_Gallery_Hooks_Handlers {
 	
 	private static function isPhoto ($path) {
 		$ext = strtolower(substr($path, strrpos($path, '.')+1));
-		return $ext=='png' || $ext=='jpeg' || $ext=='jpg' || $ext=='gif';
+		return $ext=='png' || $ext=='jpeg' || $ext=='jpg' || $ext=='gif' || $ext=='bmp' || $ext=='wbmp' || $ext=='xbm';
 		//$mimetype = OC_FileSystem::getMimeType($path);
 		//return substr($mimetype, 0, 5) === 'image';
 	}
