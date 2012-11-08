@@ -130,7 +130,7 @@ class OC_MEDIA_COLLECTION{
 			$search='%';
 		}
 		$query=OCP\DB::prepare("SELECT DISTINCT `artist_name`, `artist_id` FROM `*PREFIX*media_artists`
-			INNER JOIN `*PREFIX*media_songs` ON `artist_id`=`song_artist` WHERE `artist_name` LIKE ? AND `song_user`=? ORDER BY `artist_name`");
+			INNER JOIN `*PREFIX*media_songs` ON `artist_id`=`song_artist` WHERE lower(`artist_name`) LIKE ? AND `song_user`=? ORDER BY `artist_name`");
 		$result=$query->execute(array($search,self::$uid));
 		return $result->fetchAll();
 	}
@@ -175,7 +175,7 @@ class OC_MEDIA_COLLECTION{
 			array_push($params,$artist);
 		}
 		if($search!='%') {
-			$cmd.="AND `album_name` LIKE ? ";
+			$cmd.="AND lower(`album_name`) LIKE ? ";
 			if(!$exact) {
 				$search="%$search%";
 			}
@@ -244,7 +244,7 @@ class OC_MEDIA_COLLECTION{
 			if(!$exact) {
 				$search="%$search%";
 			}
-			$searchString ="AND `song_name` LIKE ?";
+			$searchString ="AND lower(`song_name`) LIKE ?";
 			array_push($params,$search);
 		}else{
 			$searchString='';
