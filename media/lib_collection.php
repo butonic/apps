@@ -125,7 +125,7 @@ class OC_MEDIA_COLLECTION{
 			$uid=self::$uid=$_SESSION['user_id'];
 		}
 		if(!$exact and $search!='%') {
-			$search="%$search%";
+			$search='%'.strtolower($search).'%';
 		}elseif($search=='') {
 			$search='%';
 		}
@@ -177,7 +177,7 @@ class OC_MEDIA_COLLECTION{
 		if($search!='%') {
 			$cmd.="AND lower(`album_name`) LIKE ? ";
 			if(!$exact) {
-				$search="%$search%";
+				$search='%'.strtolower($search).'%';
 			}
 			array_push($params,$search);
 		}
@@ -242,7 +242,7 @@ class OC_MEDIA_COLLECTION{
 		}
 		if($search) {
 			if(!$exact) {
-				$search="%$search%";
+				$search='%'.strtolower($search).'%';
 			}
 			$searchString ="AND lower(`song_name`) LIKE ?";
 			array_push($params,$search);
