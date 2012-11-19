@@ -33,6 +33,8 @@ $filecontents = isset($_POST['filecontents']) ? $_POST['filecontents'] : false;
 $path = isset($_POST['path']) ? $_POST['path'] : '';
 $mtime = isset($_POST['mtime']) ? $_POST['mtime'] : '';
 
+$l=OC_L10N::get('files');
+
 if($path != '' && $mtime != '' && $filecontents)
 {
 	// Get file mtime
@@ -60,17 +62,17 @@ if($path != '' && $mtime != '' && $filecontents)
 		else
 		{
 			// Not writeable!
-			OCP\JSON::error(array('data' => array( 'message' => 'Insufficient permissions')));	
+			OCP\JSON::error(array('data' => array( 'message' => $l->t('Insufficient permissions'))));	
 			OCP\Util::writeLog('files_texteditor',"User does not have permission to write to file: ".$path,OCP\Util::ERROR);
 		}
 	}
 } else if($path == '') {
-	OCP\JSON::error(array('data' => array( 'message' => 'File path not supplied')));
+	OCP\JSON::error(array('data' => array( 'message' => $l->t('File path not supplied'))));
 	OCP\Util::writeLog('files_texteditor','No file path supplied', OCP\Util::ERROR);
 } else if($mtime == '') {
-	OCP\JSON::error(array('data' => array( 'message' => 'File mtime not supplied')));
+	OCP\JSON::error(array('data' => array( 'message' => $l->t('File mtime not supplied'))));
 	OCP\Util::writeLog('files_texteditor','No file mtime supplied' ,OCP\Util::ERROR);
 } else if(!$filecontents) {
-	OCP\JSON::error(array('data' => array( 'message' => 'File contents not supplied')));
+	OCP\JSON::error(array('data' => array( 'message' => $l->t('File contents not supplied'))));
 	OCP\Util::writeLog('files_texteditor','The file contents was not supplied',OCP\Util::ERROR);	
 }

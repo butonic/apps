@@ -48,5 +48,6 @@ if(!empty($filename))
 		OCP\JSON::success(array('data' => array('filecontents' => $filecontents, 'write' => 'false', 'mtime' => $mtime)));	
 	}	
 } else {
-	OCP\JSON::error(array('data' => array( 'message' => 'Invalid file path supplied.')));	
+	$l=OC_L10N::get('files_texteditor');
+	OCP\JSON::error(array('data' => array( 'message' => $l->t('Invalid file path supplied.'))));
 }

@@ -28,7 +28,7 @@
 OCP\JSON::checkLoggedIn();
 
 // Get the path from GET
-$path = isset($_GEt['path']) ? $_GET['path'] : '';
+$path = isset($_GET['path']) ? $_GET['path'] : '';
 
 if($path != '')
 {
@@ -45,5 +45,5 @@ if($path != '')
 }
 else
 {
-	OCP\JSON::error();	
+	OCP\JSON::error();
 }

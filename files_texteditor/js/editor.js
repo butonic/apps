@@ -154,8 +154,9 @@ function doFileSave(){
 				if(jsondata.status!='success'){
 					// Save failed
 					$('#editor_save').text(t('files_texteditor','Save'));
-					$('#editor_save').after('<p id="save_result" style="float: left">Failed to save file</p>');
-					$("#editor_save").live('click',doFileSave);
+					$('#notification').html(t('files_texteditor','Failed to save file'));
+					$('#notification').fadeIn();
+					$('#editor_save').live('click',doFileSave);
 				} else {
 					// Save OK
 					// Update mtime
