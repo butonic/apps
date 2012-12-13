@@ -88,7 +88,7 @@ function showControls(dir,filename,writeperms){
 		var pathToDir = encodeURIComponent(dirs.slice(0,i+1).join('/'));
 		
 		var editorcrumb = '<div class="crumb svg"\n\
-								style="background-image:url(\'/owncloud/themes/freenet/core/img/breadcrumb.png\')">\n\
+								style="background-image:url(\''+OC.imagePath('core','breadcrumb')+'\')">\n\
 								<a href="'+OC.linkTo('files', 'index.php')+'&dir='+pathToDir+'">'+d+'</a>\n\
 							</div>';
 		$('#controls').append(editorcrumb);
